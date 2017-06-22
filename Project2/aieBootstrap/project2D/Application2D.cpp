@@ -18,6 +18,19 @@ bool Application2D::startup()
 {
 	m_2dRenderer = new Renderer2D();
 
+	//Create state machine
+
+	m_StateMachine = new StateMachine();
+
+	//Register states
+	m_StateMachine->RegisterState(0, new )
+	//stateMachine->RegisterState(0, new SplashState());
+	//stateMachine->RegisterState(1, new Loading());
+	//stateMachine->RegisterState(2, new Game());
+
+	//Set first state
+	//stateMachine->PushState(0);
+
 	m_timer = 0;
 
 	return true;

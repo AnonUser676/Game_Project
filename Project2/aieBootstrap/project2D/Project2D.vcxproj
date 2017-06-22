@@ -166,7 +166,11 @@
     <ClCompile Include="CollisionManager.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="LoadingLetters.cpp" />
+    <ClCompile Include="LoadingState.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MenuState.cpp" />
+    <ClCompile Include="PauseState.cpp" />
     <ClCompile Include="Snowflake.cpp" />
     <ClCompile Include="SplashLetters.cpp" />
     <ClCompile Include="SplashState.cpp" />
@@ -180,6 +184,10 @@
     <ClInclude Include="DynamicArray.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="GameState.h" />
+    <ClInclude Include="LoadingLetters.h" />
+    <ClInclude Include="LoadingState.h" />
+    <ClInclude Include="MenuState.h" />
+    <ClInclude Include="PauseState.h" />
     <ClInclude Include="Snowflake.h" />
     <ClInclude Include="ObjectPool.h" />
     <ClInclude Include="SplashLetters.h" />
