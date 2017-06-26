@@ -7,6 +7,8 @@
 using namespace aie;
 using namespace std;
 
+class BaseState;
+
 class StateMachine
 {
 public:

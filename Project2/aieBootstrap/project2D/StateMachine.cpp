@@ -21,7 +21,7 @@ void StateMachine::Update(float fDetaTime)
 	if (m_Stack.size() < 0)
 		return;
 
-	m_Stack.top()->onUpdate(fDetaTime /*this*/);
+	m_Stack.top()->onUpdate(fDetaTime,this);
 }
 
 void StateMachine::Draw(Renderer2D * m_2dRenderer)

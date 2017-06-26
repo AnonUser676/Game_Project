@@ -22,8 +22,8 @@ protected:
 	Renderer2D*		m_Renderer;
 	Texture*		m_Snowflake;
 	Texture*		m_MeltedSnowflake;
-
-	bool collision = false;
-	float depth = rand() % 99 + 1;
+	Vector2 velocity;
+	bool collision;
+	float depth;
 };
 

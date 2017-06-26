@@ -4,7 +4,6 @@
 
 LoadingLetters::LoadingLetters()
 {
-	Vector2 pos((letterPos + (m_LettersL->getWidth()* 2.0f)), 740.0f);
 	m_LettersL = new Texture("./textures/Loading/L.png");
 	m_LettersO = new Texture("./textures/Loading/o.png");
 	m_LettersA = new Texture("./textures/Loading/A.png");
@@ -12,6 +11,7 @@ LoadingLetters::LoadingLetters()
 	m_LettersI = new Texture("./textures/Loading/i.png");
 	m_LettersN = new Texture("./textures/Loading/n.png");
 	m_LettersG = new Texture("./textures/Loading/g.png");
+	Vector2 pos((letterPos + (m_LettersL->getWidth()* 2.0f)), 740.0f);
 	speed = 3.0f;
 	mass = 3.0f;
 

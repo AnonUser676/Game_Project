@@ -5,6 +5,8 @@
 #include "ObjectPool.h"
 #include "Snowflake.h"
 #include "SplashLetters.h"
+#include "StateMachine.h"
+#include "DynamicArray.h"
 
 using namespace aie;
 using namespace std;
@@ -13,19 +15,19 @@ class SplashState : public BaseState
 {
 public:
 	SplashState();
-	~SplashState();
+	virtual ~SplashState();
 	void onEnter();
-	void onUpdate(float deltaTime /*statemachine*/);
+	void onUpdate(float deltaTime, StateMachine* State);
 	void onDraw(Renderer2D* renderer2D);
 	void onExit();
 
 	ObjectPool <Snowflake, 20> myPool;
-	ObjectPool <SplashLetters, 5> myLetterPool;
+
+	float time;
 
 protected:
-	Renderer2D*		m_Renderer;
-	Texture*		m_background;
-	Snowflake*		m_Snow;
-	SplashLetters*	m_Letters;
+	Texture*						m_background;
+	DynamicArray<Snowflake*>		m_Snow;
+	SplashLetters*					m_Letters;
 };
 

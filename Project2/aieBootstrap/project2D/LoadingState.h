@@ -4,6 +4,7 @@
 #include "Texture.h"
 #include "ObjectPool.h"
 #include "LoadingLetters.h"
+#include "StateMachine.h"
 
 using namespace aie;
 using namespace std;
@@ -13,10 +14,10 @@ class LoadingState : public BaseState
 {
 public:
 	LoadingState();
-	~LoadingState();
+	virtual ~LoadingState();
 
 	void onEnter();
-	void onUpdate(float deltaTime);
+	void onUpdate(float deltaTime, StateMachine* State);
 	void onDraw(Renderer2D* renderer2D);
 	void onExit();
 

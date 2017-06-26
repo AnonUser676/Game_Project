@@ -23,9 +23,11 @@ void LoadingState::onDraw(Renderer2D* renderer2D)
 	}
 }
 
-void LoadingState::onUpdate(float deltaTime)
+void LoadingState::onUpdate(float deltaTime, StateMachine* State)
 {
 	m_Letters->update(deltaTime);
+
+	State->PushState(2);
 }
 
 void LoadingState::onExit()

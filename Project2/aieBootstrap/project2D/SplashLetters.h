@@ -15,18 +15,14 @@ public:
 	SplashLetters();
 	virtual ~SplashLetters();
 
-	virtual void draw(Renderer2D* m_Renderer,int type);
+	virtual void draw(Renderer2D* m_Renderer);
 	virtual void update(float deltaTime);
 
-	float letterPos = 600.0f;
+	float letterPos;
+	Vector2 velocity;
 
 protected:
 	Renderer2D*		m_Renderer;
 	Texture*		m_Letters;
-	Texture*		m_LettersZ;
-	Texture*		m_LettersE;
-	Texture*		m_LettersR;
-	Texture*		m_LettersO;
-	Texture*		m_LettersEnt;
 };
 

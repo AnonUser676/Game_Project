@@ -33,9 +33,6 @@
     <ClCompile Include="SplashState.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BaseState.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Snowflake.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

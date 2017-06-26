@@ -4,6 +4,7 @@
 
 Entity::Entity()
 {
+	m_pParent = nullptr;
 }
 
 

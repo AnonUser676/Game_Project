@@ -16,7 +16,7 @@ public:
 			m_active[&m_pool[i]] = false;
 	}
 
-	~ObjectPool()
+	virtual ~ObjectPool()
 	{
 		m_active.clear();
 		delete[] m_pool;

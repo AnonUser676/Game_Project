@@ -35,7 +35,6 @@ public:
 protected:
 	bool collision;
 	float speed;
-	int random;
 	float mass;
 };
 

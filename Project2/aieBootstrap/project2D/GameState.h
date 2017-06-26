@@ -2,6 +2,7 @@
 #include "BaseState.h"
 #include "Renderer2D.h"
 #include "Texture.h"
+#include "StateMachine.h"
 
 using namespace aie;
 using namespace std;
@@ -13,7 +14,7 @@ public:
 	GameState();
 	virtual ~GameState();
 	void onEnter();
-	void onUpdate(float deltaTime);
+	void onUpdate(float deltaTime, StateMachine* State);
 	void onDraw(Renderer2D* renderer2D);
 	void onExit();
 

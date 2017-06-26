@@ -13,6 +13,9 @@
 using namespace std;
 using namespace aie;
 
+class SplashState;
+class LoadingState;
+
 class Application2D : public aie::Application {
 public:
 
@@ -24,10 +27,12 @@ public:
 
 	virtual void update(float deltaTime);
 	virtual void draw();
-
-protected:
-
+	
+private:
 	Renderer2D*	m_2dRenderer;
 	StateMachine* m_StateMachine;
 	float m_timer;
+
+	SplashState* m_Splash;
+	LoadingState* m_Load;
 };

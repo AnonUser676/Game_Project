@@ -22,7 +22,7 @@ void GameState::onDraw(Renderer2D* renderer2D)
 	
 }
 
-void GameState::onUpdate(float deltaTime)
+void GameState::onUpdate(float deltaTime, StateMachine* State)
 {
 }
 

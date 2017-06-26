@@ -17,19 +17,23 @@ Application2D::~Application2D()
 bool Application2D::startup() 
 {
 	m_2dRenderer = new Renderer2D();
-
+	CollisionManager::Create();
 	//Create state machine
 
 	m_StateMachine = new StateMachine();
 
-	//Register states
-	m_StateMachine->RegisterState(0, new )
-	//stateMachine->RegisterState(0, new SplashState());
-	//stateMachine->RegisterState(1, new Loading());
-	//stateMachine->RegisterState(2, new Game());
+	m_Splash = new SplashState();
+	m_Load = new LoadingState();
 
+	//Register states
+	m_StateMachine->RegisterState(0, m_Splash);
+	m_StateMachine->RegisterState(1, m_Load);
+	//m_StateMachine->RegisterState(2, new MenuState());
+	//m_StateMachine->RegisterState(3, new GameState());
+	//m_StateMachine->RegisterState(4, new PauseState());
+	
 	//Set first state
-	//stateMachine->PushState(0);
+	m_StateMachine->PushState(0);
 
 	m_timer = 0;
 
@@ -39,6 +43,7 @@ bool Application2D::startup()
 void Application2D::shutdown() 
 {
 	delete m_2dRenderer;
+	CollisionManager::Destroy();
 }
 
 void Application2D::update(float deltaTime) 
@@ -49,6 +54,8 @@ void Application2D::update(float deltaTime)
 
 	if (input->isKeyDown(INPUT_KEY_ESCAPE))
 		quit();
+
+	m_StateMachine->Update(deltaTime);
 }
 
 void Application2D::draw() 
@@ -56,6 +63,6 @@ void Application2D::draw()
 	clearScreen();
 
 	m_2dRenderer->begin();
-
+	m_StateMachine->Draw(m_2dRenderer);
 	m_2dRenderer->end();
 }
