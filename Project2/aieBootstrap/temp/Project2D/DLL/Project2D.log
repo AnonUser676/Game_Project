@@ -1,3 +1,9 @@
-﻿  StateMachine.cpp
-LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+﻿  Application2D.cpp
+  Generating Code...
+  Compiling...
+  main.cpp
+  SplashState.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  StateMachine.cpp
   Project2D.vcxproj -> E:\_AIE\Project2\aieBootstrap\temp\Project2D\DLL\Project2D.exe
