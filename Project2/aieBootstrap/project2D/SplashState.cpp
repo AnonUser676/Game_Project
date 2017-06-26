@@ -7,8 +7,7 @@ SplashState::SplashState()
 	
 	for (int i = 0; i < 20; i++)
 	{
-		m_Snow[i] = myPool.Create();
-		//m_Snow.pushBack(m_Snow);
+		m_Snow.pushBack(myPool.Create());
 	}
 }
 
@@ -16,6 +15,8 @@ SplashState::SplashState()
 SplashState::~SplashState()
 {
 	delete m_background;
+	delete m_Letters;
+	m_Snow.Clear();
 }
 
 void SplashState::onEnter()
@@ -48,6 +49,7 @@ void SplashState::onUpdate(float deltaTime, StateMachine* State)
 	
 	if (time > 8.0f)
 	{
+		State->PopState();
 		State->PushState(1);
 	}
 }
@@ -58,6 +60,5 @@ void SplashState::onExit()
 	{
 		myPool.Destroy(m_Snow[i]);
 	}
-	m_Snow.Clear();
 	time = 0.0f;
 }

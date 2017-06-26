@@ -66,5 +66,8 @@ void StateMachine::RegisterState(int nStateIndex, BaseState* pState)
 void StateMachine::PopState()
 {
 	if (m_Stack.size() > 0)
+		m_Stack.top()->onExit();
+
+	if (m_Stack.size() > 0)
 		m_Stack.pop();
 }

@@ -16,9 +16,19 @@ public:
 	virtual ~LoadingLetters();
 
 	virtual void draw(Renderer2D* m_Renderer, int type);
-	virtual void update(float deltaTime);
+	virtual void update(float deltaTime, int type);
 
-	float letterPos = 1000.0f;
+	Vector2 velocity;
+	Vector2 pos0;
+	Vector2 pos1;
+	Vector2 pos2;
+	Vector2 pos3;
+	Vector2 pos4;
+	Vector2 pos5;
+	Vector2 pos6;
+	Vector2 pos7;
+	float time;
+	bool checker;
 
 protected:
 	Renderer2D*		m_Renderer;

@@ -5,6 +5,7 @@
 #include "ObjectPool.h"
 #include "LoadingLetters.h"
 #include "StateMachine.h"
+#include "DynamicArray.h"
 
 using namespace aie;
 using namespace std;
@@ -23,8 +24,10 @@ public:
 
 	ObjectPool <LoadingLetters, 7> myLetterPool;
 
+	float time;
+
 protected:
 	Renderer2D*		m_Renderer;
-	LoadingLetters* m_Letters;
+	DynamicArray<LoadingLetters*> m_Letters;
 };
 

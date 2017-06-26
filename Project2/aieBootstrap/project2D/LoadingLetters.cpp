@@ -11,15 +11,21 @@ LoadingLetters::LoadingLetters()
 	m_LettersI = new Texture("./textures/Loading/i.png");
 	m_LettersN = new Texture("./textures/Loading/n.png");
 	m_LettersG = new Texture("./textures/Loading/g.png");
-	Vector2 pos((letterPos + (m_LettersL->getWidth()* 2.0f)), 740.0f);
-	speed = 3.0f;
+	m_Letters = m_LettersL;
+	
+	pos0.x = 600; pos0.y = 200;
+	pos1.x = 600 + (m_LettersL->getWidth())*1; pos1.y = 200;
+	pos2.x = 600 + (m_LettersL->getWidth())*2; pos2.y = 200;
+	pos3.x = 600 + (m_LettersL->getWidth())*3; pos3.y = 200;
+	pos4.x = 600 + (m_LettersL->getWidth())*4; pos4.y = 200;
+	pos5.x = 600 + (m_LettersL->getWidth())*5; pos5.y = 200;
+	pos6.x = 600 + (m_LettersL->getWidth())*6; pos6.y = 200;
+	pos7.x = 600 + (m_LettersL->getWidth())*7; pos7.y = 200;
+
+	speed = 50.0f;
 	mass = 3.0f;
-
-	Matrix3 TempPos;
-	TempPos.setPosition(pos);
-	LocalTransform = LocalTransform * TempPos;
-	updateGlobalTransform();
-
+	time = 0.0f;
+	checker = false;
 }
 
 
@@ -32,7 +38,8 @@ LoadingLetters::~LoadingLetters()
 	delete m_LettersI;
 	delete m_LettersN;
 	delete m_LettersG;
-	delete m_Letters;
+	//delete m_Letters;
+	time = 0.0f;
 }
 
 void LoadingLetters::draw(Renderer2D* m_Renderer, int type)
@@ -72,23 +79,68 @@ void LoadingLetters::draw(Renderer2D* m_Renderer, int type)
 	m_Renderer->drawSpriteTransformed3x3(m_Letters, GlobalTransform, 0.0f, 0.0f, 50.0f);
 }
 
-void LoadingLetters::update(float deltaTime)
+void LoadingLetters::update(float deltaTime, int type)
 {
-	Vector3 dir;
+	time += deltaTime;
 	Vector2 pos;
+	Vector3 dir;
 	Matrix3 container;
 	Vector2 forceSum;
 	Vector2 accel;
-	Vector2 velocity;
+	
+	if (type == 0)
+	{
+		pos = pos0;
+	}
+	else if (type == 1)
+	{
+		pos = pos1;
+	}
+	else if (type == 2)
+	{
+		pos = pos2;
+	}
+	else if (type == 3)
+	{
+		pos = pos3;
+	}
+	else if (type == 4)
+	{
+		pos = pos4;
+	}
+	else if (type == 5)
+	{
+		pos = pos5;
+	}
+	else if (type == 6)
+	{
+		pos = pos6;
+	}
+	else
+	{
+		pos = pos7;
+	}
 
-	dir += -(LocalTransform[1]);
+	if ((time/time) > 0.5f)
+		dir += (LocalTransform[1]);
+
+	if ((time/time) < 0.5f)
+		dir += -(LocalTransform[1]);
+
 	forceSum.convert(dir);
 	forceSum *= speed;
 	accel = forceSum / mass;
-
+	
 	velocity += accel * deltaTime;
+	
+	if ((pos.y < 200.0f) && checker == true)
+	{
+		velocity *= 0.0f;
+		checker = false;
+	}
+	else
+		checker = false;
 
-	//insert if statement here regarding stop position
 	pos += velocity * deltaTime;
 	container.setPosition(pos);
 	LocalTransform = LocalTransform * container;

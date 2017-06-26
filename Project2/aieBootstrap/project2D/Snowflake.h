@@ -17,12 +17,13 @@ public:
 
 	virtual void draw(Renderer2D* m_Renderer);
 	virtual void update(float deltaTime);
+	virtual void reset();
 
 protected:
 	Renderer2D*		m_Renderer;
 	Texture*		m_Snowflake;
 	Texture*		m_MeltedSnowflake;
-	Vector2 velocity;
+	Vector2			velocity;
 	bool collision;
 	float depth;
 };

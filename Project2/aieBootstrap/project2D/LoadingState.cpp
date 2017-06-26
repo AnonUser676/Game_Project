@@ -1,36 +1,56 @@
 #include "LoadingState.h"
 
 
-
 LoadingState::LoadingState()
 {
-	m_Letters = myLetterPool.Create();
+	for (int i = 0; i < 7; i++)
+	{
+		m_Letters.pushBack(myLetterPool.Create());
+	}
+	
 }
 
 
 LoadingState::~LoadingState()
 {
+	m_Letters.Clear();
 }
 
 void LoadingState::onEnter()
-{}
+{
+	time = 0.0f;
+}
 
 void LoadingState::onDraw(Renderer2D* renderer2D)
 {
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < m_Letters.Size(); i++)
 	{
-		m_Letters->draw(renderer2D, i);
+		m_Letters[i]->draw(renderer2D, i);
 	}
 }
 
 void LoadingState::onUpdate(float deltaTime, StateMachine* State)
 {
-	m_Letters->update(deltaTime);
+	time += deltaTime;
 
-	State->PushState(2);
+	for (int i = 0; i < m_Letters.Size(); i++)
+	{
+		m_Letters[i]->update(deltaTime, i);
+	}
+
+	if (time > 5)
+	{
+		State->PopState();
+		State->PushState(2);
+	}
 }
 
 void LoadingState::onExit()
 {
-	myLetterPool.Destroy(m_Letters);
+	for (int i = 0; i < m_Letters.Size(); i++)
+	{
+		myLetterPool.Destroy(m_Letters[i]);
+	}
+	
+	time = 0.0f;
 }

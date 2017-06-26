@@ -4,9 +4,11 @@
 Snowflake::Snowflake()
 {
 	collision = false;
-	depth = static_cast <float> (rand()) / (static_cast <float> (99));
+	depth = (rand() % 99 + 1) *1.0f;
+	Vector2 pos;
 
-	Vector2 pos(rand() % 1360 + 50.0f, 800.0f);
+	pos.x = rand() % 1360 + 50.0f;
+	pos.y = 800.0f;
 	m_Snowflake = new Texture("./textures/Splash/snowflake.png");
 	m_MeltedSnowflake = new Texture("./textures/Splash/snowflake_melted.png");
 	speed = (rand() % 30 + 12) * 1.0f;
@@ -31,28 +33,24 @@ Snowflake::~Snowflake()
 
 void Snowflake::draw(Renderer2D* m_Renderer)
 {		
-	m_Renderer->drawSpriteTransformed3x3(m_Snowflake, GlobalTransform, 0.0f, 0.0f, 1.0f);
+	m_Renderer->drawSpriteTransformed3x3(m_Snowflake, GlobalTransform, 0.0f, 0.0f, depth);
 }
 
 void Snowflake::update(float deltaTime)
 {
 	Vector3 dir;
-	Vector2 pos;
 	Matrix3 container;
 	Vector2 forceSum;
 	Vector2 accel;
-		
+	Vector2 pos;
+
 	dir += -(LocalTransform[1]);
 
-	if ((getPosition().y >= 471) ||  (getPosition().y == 128) || (getPosition().y == 571))
-	{
+	if ((getPosition().y >= 128) || (getPosition().y >= 471) || (getPosition().y >= 571))
 		dir += -(LocalTransform[0]);
-	}
 
-	else if ((getPosition().y == 699) || (getPosition().y == 64) || (getPosition().y == 376))
-	{
-		dir += -(LocalTransform[0]);
-	}
+	if ((getPosition().y <= 64) || (getPosition().y <= 376) || (getPosition().y <= 699))
+		dir += (LocalTransform[0]);
 
 	forceSum.convert(dir);
 	forceSum *= speed;
@@ -85,7 +83,22 @@ void Snowflake::update(float deltaTime)
 		velocity *= 0.0f;
 		collision = true;
 	}
+
 	pos += velocity * deltaTime;
+	container.setPosition(pos);
+	LocalTransform = LocalTransform * container;
+	updateGlobalTransform();
+}
+
+void Snowflake::reset()
+{
+	Vector2 pos;
+	Matrix3 container;
+
+	pos.x = rand() % 1270 * 1.0f;
+	pos.y = 800.0f;
+	velocity *= 0.99f;
+
 	container.setPosition(pos);
 	LocalTransform = LocalTransform * container;
 	updateGlobalTransform();

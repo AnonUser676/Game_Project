@@ -4,6 +4,12 @@
 #include "Texture.h"
 #include "ObjectPool.h"
 #include "Snowflake.h"
+#include "StateMachine.h"
+#include "DynamicArray.h"
+#include "Input.h"
+#include <iostream>
+#include <cstring>
+#include "Font.h"
 
 using namespace aie;
 using namespace std;
@@ -21,8 +27,16 @@ public:
 	
 	ObjectPool <Snowflake, 20> myPool;
 
+	float time;
+	char instructions[100];
+	int textTimer;
+	int ticker;
+
 protected:
-	Renderer2D*		m_Renderer;
+	Input*			m_Input;
 	Texture*		m_background;
-	Snowflake*		m_Snow;
+	Texture*		m_Ice;
+	Texture*		m_Glider;
+	Font*			m_font;
+	DynamicArray<Snowflake*>		m_Snow;
 };
