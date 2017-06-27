@@ -3,17 +3,13 @@
 
 LoadingState::LoadingState()
 {
-	for (int i = 0; i < 7; i++)
-	{
-		m_Letters.pushBack(myLetterPool.Create());
-	}
-	
+		m_Letters = new LoadingLetters;
 }
 
 
 LoadingState::~LoadingState()
 {
-	m_Letters.Clear();
+	delete m_Letters;
 }
 
 void LoadingState::onEnter()
@@ -23,34 +19,24 @@ void LoadingState::onEnter()
 
 void LoadingState::onDraw(Renderer2D* renderer2D)
 {
-	for (int i = 0; i < m_Letters.Size(); i++)
-	{
-		m_Letters[i]->draw(renderer2D, i);
-	}
+	m_Letters->draw(renderer2D);
 }
 
 void LoadingState::onUpdate(float deltaTime, StateMachine* State)
 {
 	time += deltaTime;
 
-	for (int i = 0; i < m_Letters.Size(); i++)
-	{
-		m_Letters[i]->update(deltaTime, i);
-	}
+	m_Letters->update(deltaTime);
+
 
 	if (time > 5)
 	{
 		State->PopState();
-		State->PushState(2);
+		State->PushState(STATE_MENU);
 	}
 }
 
 void LoadingState::onExit()
 {
-	for (int i = 0; i < m_Letters.Size(); i++)
-	{
-		myLetterPool.Destroy(m_Letters[i]);
-	}
-	
 	time = 0.0f;
 }

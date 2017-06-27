@@ -12,7 +12,8 @@ class PauseState : public BaseState
 {
 public:
 	PauseState();
-	~PauseState();
+	virtual ~PauseState();
+
 	void onEnter();
 	void onUpdate(float deltaTime, StateMachine* State);
 	void onDraw(Renderer2D* renderer2D);

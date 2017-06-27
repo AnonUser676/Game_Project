@@ -50,7 +50,7 @@ void SplashState::onUpdate(float deltaTime, StateMachine* State)
 	if (time > 8.0f)
 	{
 		State->PopState();
-		State->PushState(1);
+		State->PushState(STATE_LOAD);
 	}
 }
 

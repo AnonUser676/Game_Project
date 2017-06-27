@@ -46,12 +46,6 @@ void Snowflake::update(float deltaTime)
 
 	dir += -(LocalTransform[1]);
 
-	if ((getPosition().y >= 128) || (getPosition().y >= 471) || (getPosition().y >= 571))
-		dir += -(LocalTransform[0]);
-
-	if ((getPosition().y <= 64) || (getPosition().y <= 376) || (getPosition().y <= 699))
-		dir += (LocalTransform[0]);
-
 	forceSum.convert(dir);
 	forceSum *= speed;
 	accel = forceSum / mass;
@@ -95,9 +89,8 @@ void Snowflake::reset()
 	Vector2 pos;
 	Matrix3 container;
 
-	pos.x = rand() % 1270 * 1.0f;
 	pos.y = 800.0f;
-	velocity *= 0.99f;
+	velocity *= 0.75f;
 
 	container.setPosition(pos);
 	LocalTransform = LocalTransform * container;

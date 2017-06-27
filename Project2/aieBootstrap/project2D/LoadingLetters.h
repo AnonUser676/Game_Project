@@ -15,30 +15,16 @@ public:
 	LoadingLetters();
 	virtual ~LoadingLetters();
 
-	virtual void draw(Renderer2D* m_Renderer, int type);
-	virtual void update(float deltaTime, int type);
+	virtual void draw(Renderer2D* m_Renderer);
+	virtual void update(float deltaTime);
 
 	Vector2 velocity;
-	Vector2 pos0;
-	Vector2 pos1;
-	Vector2 pos2;
-	Vector2 pos3;
-	Vector2 pos4;
-	Vector2 pos5;
-	Vector2 pos6;
-	Vector2 pos7;
 	float time;
 	bool checker;
+	float ticker;
 
 protected:
 	Renderer2D*		m_Renderer;
 	Texture*		m_Letters;
-	Texture*		m_LettersL;
-	Texture*		m_LettersO;
-	Texture*		m_LettersA;
-	Texture*		m_LettersD;
-	Texture*		m_LettersI;
-	Texture*		m_LettersN;
-	Texture*		m_LettersG;
 };
 
